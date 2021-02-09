@@ -1,0 +1,22 @@
+﻿@model StorageWebsite.Models.Item
+
+
+
+
+    <div asp-validation-summary="ModelOnly"></div>
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name" class="ErrorText"></span>
+    <label asp-for="Category"></label>
+    <select asp-for="Category" asp-items="@((List<SelectListItem>)ViewData["Categories"])" class="select">
+        <option value="">Välj en kategori</option>
+    </select>
+    <span asp-validation-for="Category" class="ErrorText"></span>
+
+    <label asp-for="Instorage"></label>
+    <input asp-for="Instorage" />
+
+    <Label asp-for="Price"></Label>
+    <input asp-for="Price" />
+    <span asp-validation-for="Price" class="ErrorText"></span>
+

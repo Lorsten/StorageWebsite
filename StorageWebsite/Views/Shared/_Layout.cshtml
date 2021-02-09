@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Sida för att lagra artiklar ">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+@{ViewData["Titel"] = "Lager";}
+
+<body>
+    <header>
+        <h1><a asp-controller="DisplayData" asp-action="index">@ViewData["titel"] </a></h1>
+        <button class="hamburger hamburger--stand" id="Hambugermenu" type="button" aria-label="Öppna mobil meny">
+            <span class="mobileHeadline">Meny</span>
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+        <div id="header-background"></div>
+
+        <nav class="navigation">
+            <div id="mobile-header">
+                <h2><a asp-controller="DisplayData" asp-action="index">@ViewData["titel"] </a></h2>
+                <!-- Close button mobile-->
+                <button class="hamburger hamburger--stand is-active" id="Hambugermenu-open" type="button" aria-label="Stäng menyn">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+            <ul>
+                <li><a asp-controller="DisplayData" asp-action="index">Hem</a></li>
+                <li><a asp-controller="DisplayData" asp-action="AddItem">Lägg till ny produkt</a></li>
+                <li><a asp-controller="Home" asp-action="About">Om sidan</a></li>
+                @if(ViewBag.loggedIn)
+                {
+                    <li><a asp-controller="Home" asp-action="Logut">Logga ut</a></li>
+                }
+
+            </ul>
+        </nav>
+    </header>
+    <div id="wrapper">
+        <main>
+            @RenderBody()
+        </main>
+        </div>
+        <footer>
+            <h2>&copy; @ViewData["Titel"]</h2>
+        </footer>
+        <script src="~/js/Main.js" asp-append-version="true"></script>
+</body>
+</html>

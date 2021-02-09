@@ -1,0 +1,757 @@
+﻿@import 'variables';
+
+body,
+html {
+    height: 100%;
+    position: relative;
+}
+
+header {
+    width: 100%;
+    margin: 2% auto 0 auto;
+    @include flex(row);
+
+    h1 {
+        width: 50%;
+        margin-left: 10%;
+        font-weight: bold;
+
+        @include screen-size(phone) {
+            width: 70%;
+            margin-top: 5%;
+            font-size: 1.8em;
+            margin-left: 3%;
+        }
+
+        @include screen-size(tablet-portrait-up) {
+            width: 65%;
+            font-size: 1.8em;
+        }
+
+        @include screen-size(phone-landscape) {
+            font-size: 1.8em;
+            margin-top: 1%;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+
+            &:hover {
+                opacity: .5;
+            }
+            // When user focus on the element
+            &:focus {
+                outline: 5px solid black;
+            }
+        }
+    }
+    //* Div for mobile background in the header, display none for desktop
+    #header-background {
+        padding: 8% 0;
+        width: 100%;
+        background-color: #327DAC;
+        margin: 0 0 5% 0;
+
+        @include screen-size(phone-landscape) {
+            padding: 5% 0;
+        }
+
+        @include screen-size(desktop) {
+            display: none;
+        }
+    }
+    //* Hide form and h2-tag for desktop
+    @include screen-size(desktop) {
+
+        #Hambugermenu,
+        .mobileHeadline {
+            display: none;
+        }
+    }
+
+
+    #Hambugermenu {
+        padding: 0;
+        width: 20%;
+
+        @include screen-size(phone) {
+            @include flex(column);
+            margin-top: 0;
+        }
+
+
+        @include screen-size(tablet-portrait-up) {
+            @include flex(column);
+        }
+
+        margin-top: -1%;
+
+        h3 {
+            padding: 0;
+            margin: 0 0 5% 10%;
+            font-size: 1em;
+            font-weight: bold;
+        }
+    }
+
+    .mobileHeadline {
+        font-size: 1.1em;
+        font-weight: bold;
+
+        @include screen-size(tablet-portrait-up) {
+            font-size: 1.3em;
+        }
+    }
+    //* Class for navigation
+    .navigation {
+        background-color: #474858;
+
+
+        a {
+            color: #fff;
+            text-decoration: none;
+            width: 100%;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        #Hambugermenu-open {
+            margin-top: 3%;
+        }
+
+        @include screen-size(phone) {
+            left: 200%;
+            width: 90%;
+        }
+
+        @include screen-size(tablet-portrait-up) {
+            left: 200%;
+        }
+        //Make the menu 100vw width for landscape
+        @include screen-size(phone-landscape) {
+            left: 200%;
+            width: 100vw;
+        }
+
+        @include screen-size(desktop) {
+            width: 100vw;
+            position: relative;
+            left: 0%;
+            height: auto;
+            margin: 0;
+        }
+
+        position: fixed;
+        left: 10%;
+        top: 0;
+        right: 100%;
+        height: 100vh;
+        z-index: 5;
+        width: 90vw;
+        transition: none;
+        //Class for animating the return of the hamburger menu
+        &.is-active {
+            left: 10%;
+            animation: Menu-slide 0.6s linear;
+
+            @include screen-size(desktop) {
+                left: 0;
+            }
+
+            @include screen-size(phone-landscape) {
+                left: 0;
+            }
+        }
+        //Class for animating the return of the hamburger menu
+        &.Slide-in {
+            left: 200%;
+            transition: left 0.6s linear;
+
+            @include screen-size(desktop) {
+                transition: none;
+                left: 0%;
+            }
+        }
+        // Container for the mobile menu
+        #mobile-header {
+            @include flex(row);
+            margin: 0 0 5% 0;
+
+            @include screen-size(desktop) {
+                display: none;
+            }
+
+            button {
+                width: 30%;
+                color: Color(Text);
+            }
+
+            h2 {
+                width: 65%;
+                margin-left: 5%;
+                display: block;
+                margin-top: 5%;
+            }
+
+            a {
+                color: #fff;
+                width: 100%;
+            }
+        }
+
+        ul {
+            max-width: $Max-Width;
+            margin: 0 0 0 10%;
+            width: 90%;
+
+
+            @include screen-size(phone) {
+                width: 100%;
+                margin: 10% 0 0 0;
+            }
+
+            @include screen-size(phone-landscape) {
+                margin: 0;
+            }
+
+            @include screen-size(tablet-portrait-up) {
+                width: 100%;
+                margin: 10% 0 0 0;
+            }
+
+            @include screen-size(phone-landscape) {
+                background-color: #E4E4E4;
+                margin: 5% 0 0 0;
+            }
+
+            li {
+
+                @include screen-size(desktop) {
+                    padding: 2% 0;
+                    text-align: center;
+                    display: inline-block;
+                    width: 20%;
+                    background: none;
+                }
+
+
+                @include screen-size(phone) {
+                    margin: .4% 0%;
+                    padding: 5% 0 0 2%;
+                }
+
+                @include screen-size(tablet-portrait-up) {
+                    margin: .4% 0%;
+                    width: 100%;
+                    padding: 5% 0 0 5%;
+                }
+
+                @include screen-size(phone-landscape) {
+                    margin-top: 5%;
+                    padding: 2% 0;
+                    text-align: center;
+                    display: inline-block;
+                    width: 24%;
+                    background: none;
+                }
+
+                display: block;
+                width: 100%;
+                text-align: left;
+                padding-left: 5%;
+                position: relative;
+
+                &:hover:not(.active) {
+                    background-color: #2F4F64;
+
+                    a {
+                        width: 100%;
+                        display: block;
+
+                        @include screen-size(phone) {
+                            display: block;
+                            font-size: 1.2em;
+                        }
+
+                        color: #ffff;
+                        width: 100%;
+                    }
+                }
+
+                &.active {
+                    background-color: Color(Layout, Active);
+
+                    a {
+                        border-bottom: 3px solid black;
+                    }
+
+
+                    &:hover {
+                        a {
+                            color: #000000;
+                        }
+                    }
+                }
+            }
+
+            a {
+                @include screen-size(phone) {
+                    font-size: 1.2em;
+                    text-decoration: none;
+                }
+
+                @include screen-size(tablet-portrait-up) {
+                    font-size: 1.5em;
+                    text-decoration: none;
+                }
+
+                @include screen-size(phone-landscape) {
+                    font-size: 1.1em;
+                }
+
+                &:focus {
+                    outline: 3px solid black;
+                }
+            }
+        }
+
+        #navigation-mobile {
+            @include screen-size(desktop) {
+                display: none;
+            }
+
+            margin: 0 0 0 5%;
+
+            ul {
+                text-align: left;
+                width: 100%;
+                background: none;
+                display: inline-block;
+                margin-left: 0;
+
+                li {
+                    margin: 0;
+                    padding: 0;
+                    font-size: 1em;
+                    width: auto;
+                    display: inline-block;
+                    background: none;
+                }
+            }
+        }
+    }
+}
+
+//* Wrapper for the content except for the footer. The desktop version has a max-width of 1280px
+#wrapper {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+
+    @include screen-size(desktop) {
+        width: 90%;
+    }
+
+    @include screen-size(desktop-large) {
+        width: 90%;
+    }
+    //* Base style for all sections tags inside wrapper
+    section {
+        margin: 5% auto;
+        width: 85%;
+
+        a {
+            color: #000;
+        }
+
+        form {
+            @include flex(column);
+
+            input[type="text"],
+            input[type="password"],
+            input[type="number"] {
+                width: 99%;
+                padding: 1% 0 1% 1%;
+                font-size: 1.1em;
+                margin: 1% 0;
+
+                @include screen-size(phone) {
+                    width: 95%;
+                }
+            }
+
+            .select {
+                width: 99%;
+                padding: 1% 0 1% 1%;
+                font-size: 1.1em;
+                margin: 1% 0;
+            }
+
+            input[type="submit"] {
+                width: 40%;
+                padding: 1% 0 1% 1%;
+                font-size: 1.1em;
+                margin: 1% 0;
+            }
+        }
+
+
+        @include screen-size(phone) {
+            table, th, td, tr, thead, tbody {
+                display: block;
+            }
+        }
+
+        @include screen-size(tablet-portrait-up) {
+            table, th, td, tr, thead, tbody {
+                display: block;
+            }
+        }
+
+
+
+        table {
+            width: 100%;
+
+            th {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+
+                @include screen-size(desktop) {
+                    font-weight: bold;
+                    padding: 2% 0 2% 1%;
+                    position: static;
+                    text-align: left;
+                }
+            }
+
+            td {
+                padding: 2% 0 2% 1%;
+            }
+
+            @include screen-size(phone) {
+
+
+                td {
+
+                    text-align: left;
+
+                    &:nth-child(4) {
+                        background-color: #D2D9E7;
+                    }
+
+                    border-bottom: 1px solid #000;
+                    position: relative;
+                    padding-left: 50%;
+
+                    &:nth-of-type(1):before {
+                        content: "Namn";
+                    }
+
+                    &:nth-of-type(2):before {
+                        content: "Kategori";
+                    }
+
+                    &:nth-of-type(3):before {
+                        content: "Beskrivning";
+                    }
+
+                    &:nth-of-type(4):before {
+                        content: "I lager";
+                    }
+
+                    &:nth-of-type(5):before {
+                        content: "Pris";
+                    }
+
+                    &:nth-of-type(6):before {
+                        content: "Skapat";
+                    }
+
+                    &:nth-of-type(7):before {
+                        content: "Ändra";
+                    }
+
+                    &:nth-of-type(8):before {
+                        content: "Radera";
+                    }
+
+                    &:before {
+                        position: absolute;
+                        padding: 0 1% 0 1%;
+                        width: 45%;
+                        left: 1%;
+                    }
+                }
+            }
+
+            @include screen-size(tablet-portrait-up) {
+                td {
+                    padding: 2% 0 2% 1%;
+
+                    &:nth-child(4) {
+                        background-color: #D2D9E7;
+                    }
+
+                    border-bottom: 1px solid #000;
+                    position: relative;
+                    padding-left: 50%;
+
+                    &:nth-of-type(1):before {
+                        content: "Namn";
+                    }
+
+                    &:nth-of-type(2):before {
+                        content: "Kategori";
+                    }
+
+                    &:nth-of-type(3):before {
+                        content: "Beskrivning";
+                    }
+
+                    &:nth-of-type(4):before {
+                        content: "I lager";
+                    }
+
+                    &:nth-of-type(5):before {
+                        content: "Pris";
+                    }
+
+                    &:nth-of-type(6):before {
+                        content: "Skapat";
+                    }
+
+                    &:nth-of-type(7):before {
+                        content: "Ändra";
+                    }
+
+                    &:nth-of-type(8):before {
+                        content: "Radera";
+                    }
+
+                    &:before {
+                        position: absolute;
+                        padding: 0 1% 0 1%;
+                        width: 45%;
+                        left: 1%;
+                    }
+                }
+            }
+
+            tr:not(:last-of-type) {
+                border-bottom: 1px solid black;
+
+                a {
+                    text-decoration: none;
+
+                    &:hover {
+                        color: #898D92;
+                    }
+                }
+            }
+
+
+            a:hover {
+                tr {
+                    background-color: red;
+                }
+            }
+        }
+    }
+
+    #main {
+        background-color: #EEEFF1;
+        border-radius: 2em;
+        padding: 2%;
+    }
+
+    #Latest {
+        width: 50%;
+        margin: 3% auto;
+        background-color: #D6DBE7;
+        padding: .2% 2%;
+
+        h2 {
+            margin: 0;
+        }
+
+        h3 {
+            margin: 0;
+        }
+    }
+}
+
+    .ErrorText {
+        color: #F63128;
+    }
+    //* Section for boka.html
+    //* Login page section
+    #Main-login {
+        width: 55%;
+
+        @include screen-size(phone) {
+            width: 90%;
+            -webkit-box-shadow: 6px 6px 15px 5px rgba(0, 0, 0, 0.29);
+            box-shadow: 6px 6px 15px 5px rgba(0, 0, 0, 0.29);
+        }
+
+        @include screen-size(tablet-portrait-up) {
+            width: 85%;
+        }
+
+        padding: 2%;
+        border-radius: 1.5em;
+        text-align: left;
+        -webkit-box-shadow: 13px 8px 15px 5px rgba(0, 0, 0, 0.36);
+        box-shadow: 13px 8px 15px 5px rgba(0, 0, 0, 0.36);
+
+        h2 {
+            width: 98%;
+            background-color: Color(Layout);
+            text-align: left;
+            color: #fff;
+            padding: 1% 0 1% 2%;
+
+            @include screen-size(phone) {
+                font-size: 1.35em;
+            }
+
+            @include screen-size(tablet-portrait-up) {
+                font-size: 1.55em;
+            }
+        }
+
+        h3 {
+            @include screen-size(phone) {
+                text-align: center;
+                font-size: 1.2em;
+            }
+
+            @include screen-size(tablet-portrait-up) {
+                font-size: 1.35em;
+            }
+
+            a {
+                color: Color(Text, third);
+            }
+        }
+
+        form {
+            width: 100%;
+
+            input[type=text],
+            input[type=password],
+            input[type=number] {
+                width: 99%;
+                padding: 1% 0 1% 1%;
+                font-size: 1.1em;
+                margin: 1% 0;
+
+                @include screen-size(phone) {
+                    width: 95%;
+                }
+            }
+
+            input[type=checkbox] {
+                transform: scale(1.5);
+            }
+
+            label {
+                font-size: 1.2em;
+                display: inline-block;
+                width: 100%;
+                text-align: left;
+            }
+
+
+            input[type="submit"] {
+                width: 50%;
+                padding: 2% 0;
+                border-radius: 5em;
+                margin: 10% auto 0 auto;
+                border: none;
+                color: #ffff;
+                background-color: Color(Layout);
+                font-size: 1.2em;
+
+                @include screen-size(phone) {
+                    width: 60%;
+                    margin-left: 15%;
+                }
+
+                &:hover {
+                    background-color: Color(Layout, Hover);
+                }
+            }
+        }
+    }
+    //* Container for the returning trip elements
+    //* Class used for hiding element without display none for screenreaders
+    .Hide-Element {
+        border: 0;
+        clip: rect(1px 1px 1px 1px);
+        /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    // Class for a headline with blue background
+    .headline {
+        background-color: Color(Layout);
+        color: #ffff;
+        text-align: center;
+        width: 70%;
+        margin: 3% auto;
+        padding: 3% 0;
+
+        @include screen-size(phone) {
+            font-size: 1.2em;
+            width: 100%;
+            margin-bottom: 15%;
+            padding: 6% 0;
+        }
+
+        @include screen-size(tablet-portrait-up) {
+            width: 85%;
+        }
+
+        @include screen-size(phone-landscape) {
+            font-size: 1.2em;
+        }
+    }
+    //* Footer section outside of wrapper
+    footer {
+        position: relative;
+        background-color: #A8A9AE;
+        margin: 0;
+        width: 100%;
+
+        h2 {
+            color: #000;
+            text-align: center;
+            padding: 2% 0;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+
+    @keyframes Menu-slide {
+        from {
+            left: 200%;
+        }
+
+        to {
+            @include screen-size(phone-landscape) {
+                left: 0%;
+            }
+
+            left: 10%;
+        }
+    }

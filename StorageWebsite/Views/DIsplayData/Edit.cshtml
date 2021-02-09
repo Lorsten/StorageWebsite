@@ -1,0 +1,22 @@
+﻿
+@model StorageWebsite.Models.Item
+
+@{ViewData["Title"] = "Ändra";
+
+}
+
+<section>
+
+    <h2>Ändra produkten @Model.Name</h2>
+
+
+    <form asp-action="Edit">
+        <input type="hidden" value="@Model.ID" name="ID" />
+        <partial name="_Input" />
+
+
+        <input type="submit" value="Ändra produkt" />
+    </form>
+
+<a asp-action="Index">Återvänd</a>
+</section>

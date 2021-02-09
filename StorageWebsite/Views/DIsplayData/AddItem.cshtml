@@ -1,0 +1,14 @@
+﻿
+@model StorageWebsite.Models.Item
+
+@{ViewData["Title"] = "Index";
+}
+<section>
+    <h2>Lägg till produkt</h2>
+    <form method="post">
+        <partial name="_Input" />
+
+        <input type="submit" value="lägg till produkt" />
+    </form>
+    <a asp-controller="DisplayData" asp-action="Index">Tillbaka</a>
+</section>

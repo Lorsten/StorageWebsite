@@ -1,0 +1,71 @@
+﻿
+@model IEnumerable<StorageWebsite.Models.Item>
+@{ViewData["Title"] = "Lager";
+}
+
+
+
+<section id="main">
+
+    <h2>Välkommen @ViewBag.Name</h2>
+    <h3>Lager produkter</h3>
+    @if(ViewBag.CheckifEmpty)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Instorage)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Added)
+                    </th>
+                    <th>
+                        Ändra
+                    </th>
+                    <th>
+                        Radera
+                    </th>
+                </tr>
+            </thead>
+            @foreach (var Items in Model)
+            {
+                <tr>
+                    <td>@Items.Name</td>
+                    <td>
+                        @Items.Category
+                    </td>
+    
+                    @if (Items.Instorage == true)
+                    {
+                        <td>Ja</td>
+                    }
+                    else
+                    {
+                        <td>Nej</td>
+                    }
+                    <td>@Items.Price kr</td>
+                    <td>@Items.Added</td>
+                    <td><a asp-action="Edit" asp-route-id="@Items.ID">Ändra</a></td>
+                    <td><a asp-action="Remove" asp-route-id="@Items.ID">&#10005;</a></td>
+
+
+
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <h3>Det finns inget i lager</h3>
+    }
+</section>

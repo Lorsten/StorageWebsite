@@ -1,0 +1,39 @@
+﻿
+@model StorageWebsite.Models.Item
+@{ViewData["Title"] = "Ta bort";
+
+}
+<section>
+    <h2>Säker på att du vill ta bort den här produkten?</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(x => x.Name)</th>
+                <th>@Html.DisplayNameFor(x => x.Category)</th>
+                <th>@Html.DisplayNameFor(x => x.Instorage)</th>
+                <th>@Html.DisplayNameFor(x => x.Price)</th>
+                <th>@Html.DisplayNameFor(x => x.Added)</th>
+            </tr>
+        </thead>
+        @foreach (var Items in (List<Item>)ViewData["Föremål"])
+        {
+    <tr>
+        <td>@Items.Name</td>
+        <td>@Items.Category</td>
+        <td>@Items.Instorage</td>
+        <td>@Items.Price</td>
+        <td>@Items.Added</td>
+    </tr>
+        }
+
+
+    </table>
+    @{
+        var ID = ViewData["Föremål"];
+    }
+    <form asp-action="Removed">
+        <input type="hidden" value="@ViewBag.ID" data-val="true" data-val-required="The ID field is required." id="ID" name="ID" />
+        <input type="submit" value="Radera produkt" />
+    </form>
+    <a asp-action="Index">Återvänd</a>
+</section>

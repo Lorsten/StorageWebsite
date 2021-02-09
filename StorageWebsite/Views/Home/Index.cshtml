@@ -1,0 +1,27 @@
+﻿@model StorageWebsite.Models.User
+
+@{ViewData["Title"] = "Index";
+
+}
+
+<section>
+<h2>Logga in för att gå vidare </h2>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" placeholder="Name.." />
+    <span asp-validation-for="Name" class="ErrorText"></span>
+    <label asp-for="Password"></label>
+    <input type="password" name="Password" placeholder="Password" id="Password" />
+    <span asp-validation-for="Password" class="ErrorText"></span>
+    <input type="submit" value="Logga in" />
+</form>
+    <div>
+        @if(ViewBag.Error != null)
+        {
+            <h2>@ViewBag.Error</h2>
+        }
+    </div>
+</section>

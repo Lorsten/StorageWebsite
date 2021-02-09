@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "CategoryName": "Lagring"
+  },
+  {
+    "id": 2,
+    "CategoryName": "Datorkomponent"
+  },
+  {
+    "id": 3,
+    "CategoryName": "Programvara"
+  },
+  {
+    "id": 4,
+    "CategoryName": "Datortillbehör"
+  }
+]
