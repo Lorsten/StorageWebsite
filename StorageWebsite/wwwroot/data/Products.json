@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "ID": 0,
+    "Name": "Admin",
+    "Category": "Datorkomponent",
+    "Instorage": true,
+    "Price": 123,
+    "Added": "2021-02-09T17:36:10.194284+01:00"
+  }
+]

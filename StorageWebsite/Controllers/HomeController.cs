@@ -55,11 +55,14 @@ namespace StorageWebsite.Controllers
         [HttpGet("/OmSidan")]
         public IActionResult About()
         {
-            if (HttpContext.Session.GetString(SessionName) == null)
+            if (HttpContext.Session.GetString(SessionName) != null)
             {
-                return RedirectToAction("Index", "Home");
+                ViewBag.loggedIn = true;
             }
-            ViewBag.loggedIn = true;
+            else
+            {
+                ViewBag.loggedIn = false;
+            }
             return View();
         }
         //Clear the sesssion 

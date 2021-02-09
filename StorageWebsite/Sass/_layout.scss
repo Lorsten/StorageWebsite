@@ -393,6 +393,10 @@ header {
                 padding: 1% 0 1% 1%;
                 font-size: 1.1em;
                 margin: 1% 0;
+
+                @include screen-size(phone) {
+                    width: 100%;
+                }
             }
         }
 
@@ -435,7 +439,6 @@ header {
 
 
                 td {
-
                     text-align: left;
 
                     &:nth-child(4) {

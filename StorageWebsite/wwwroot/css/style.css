@@ -482,6 +482,9 @@ header {
         padding: 1% 0 1% 1%;
         font-size: 1.1em;
         margin: 1% 0; }
+        @media (max-width: 540px) {
+          #wrapper section form input[type="submit"] {
+            width: 100%; } }
     @media (max-width: 540px) {
       #wrapper section table, #wrapper section th, #wrapper section td, #wrapper section tr, #wrapper section thead, #wrapper section tbody {
         display: block; } }

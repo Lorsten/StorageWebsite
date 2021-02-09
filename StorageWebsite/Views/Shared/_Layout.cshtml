@@ -34,9 +34,12 @@
             </div>
             <ul>
                 <li><a asp-controller="DisplayData" asp-action="index">Hem</a></li>
-                <li><a asp-controller="DisplayData" asp-action="AddItem">Lägg till ny produkt</a></li>
+                @if (ViewBag.loggedIn)
+                {
+                    <li><a asp-controller="DisplayData" asp-action="AddItem">Lägg till ny produkt</a></li>
+                }
                 <li><a asp-controller="Home" asp-action="About">Om sidan</a></li>
-                @if(ViewBag.loggedIn)
+                @if (ViewBag.loggedIn)
                 {
                     <li><a asp-controller="Home" asp-action="Logut">Logga ut</a></li>
                 }
